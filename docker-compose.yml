@@ -9,3 +9,5 @@ services:
     ports:
        - 8000:8000
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
+
+    #bash -c "python /code/mysite/manage.py migrate && python /code/mysite/manage.py runserver 0.0.0.0:8000"
