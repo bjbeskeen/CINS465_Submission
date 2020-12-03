@@ -1,19 +1,5 @@
-var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello CINS 465!'
-    }
-  })
-
-var app2 = new Vue({
-  el: '#app-2',
-  data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
-  }
-})
-
-var app4 = new Vue({
-  el: '#app-4',
+var aauto_refresh = new Vue({
+  el: '#auto_refresh',
   data: {
     suggestions: [],
     seen:true,
@@ -38,12 +24,5 @@ var app4 = new Vue({
   },
   beforeDestroy(){
     this.cancelAutoUpdate();
-  }
-})
-
-var app6 = new Vue({
-  el: '#app-6',
-  data: {
-    message: 'Text Box Feature'
   }
 })

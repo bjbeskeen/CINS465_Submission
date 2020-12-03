@@ -7,9 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+  <link rel="stylesheet" href="{% static "css/app.css" %}">
   {% block css %}{% endblock %}
   </head>
   <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="dropdown menu"><b>Appointment Manager</b></li>
+          <li>
+              {% if user.is_authenticated %}
+                <a href="/logout/">Logout</a>
+              {% else %}
+                <a href="/login/">Login</a>
+              {% endif %}
+          </li>
+          <!-- 
+          <li>
+            <a href="#">One</a>
+            ###this is how to add other pages to my site through top bar links
+          </li>
+          -->
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li>
+              {% if user.is_authenticated %}
+                  Welcome {{ user.username }}
+              {% else %}
+                  Welcome Guest
+              {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div> 
       {% block content %}{% endblock %}
       <script src="{% static "js/vendor.js" %}"></script>
       <script src="{% static "js/foundation.js" %}"></script>

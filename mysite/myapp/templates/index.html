@@ -1,56 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Appointment Manager{% endblock %}
+
 {% block content %}
 
-<div id="app">
-    {% verbatim %}
-    {{ message }}
-    {% endverbatim %}
-</div>
-
-<div id="app-2">
-    <span v-bind:title="message">
-     Check when you loaded the page
-    </span>
-</div>
-
-<div id="app-6">
-    {% verbatim %}
-    <p>{{ message }}</p>
-    <input v-model="message">
-    {% endverbatim %}
-</div>
-
-<ul>
-    <div id="app-4">
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-        <ul>
-            <div class="large-12 medium-12 cell"></div>
-          <li v-for="sugg in suggestions">
-            {% verbatim %}
-            {{ sugg.suggestion }} - {{ sugg.author }}
-            <ul>
-                    <li v-for="comm in sugg.comments">
-                        {{ comm.comment }} - {{ comm.author }}
-                    </li>
-                    <!--<li><a href="/comment/{{ sugg.id }}/">comment</a></li>-->
-            </ul>
-            {% endverbatim %}
-          </li>
-        </ul>
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell">
+            <div id="app-4">
+                <div class="card-info primary" v-for="sugg in suggestions">
+                    <div class="card-info-content">
+                        {% verbatim %}
+                            <h3 class="lead">{{ sugg.suggestion }}</h3>
+                            authored by {{ sugg.author }}
+                        {% endverbatim %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</ul>
+</div>
+
 {{ comments }}
+
+{% if request.user.is_authenticated %}
 <form action="/" method="post">
-{% csrf_token %}
-{{ form }}
-<input type="submit" class="button" value="Add Suggestion"/>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="button" value="Add Appointment" />
 </form>
+{% endif %}
+
 {% endblock %}
+
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
