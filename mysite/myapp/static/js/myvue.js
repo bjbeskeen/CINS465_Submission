@@ -1,4 +1,4 @@
-var aauto_refresh = new Vue({
+var auto_refresh = new Vue({
   el: '#auto_refresh',
   data: {
     suggestions: [],
