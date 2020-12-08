@@ -40,7 +40,6 @@ class SuggestionForm(forms.Form):
         suggestion_instance.author = request.user
         suggestion_instance.date_input = self.cleaned_data["date_input"]
         suggestion_instance.time_input = self.cleaned_data["time_input"]
-
         suggestion_instance.save()
         return suggestion_instance
 

@@ -4,10 +4,10 @@
 <div class="grid-x grid-padding-x">
     <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
       <h3 class="text-center">Delete</h3>
-        <form action="delete/{{ sugg_id }}" method="POST">
+        <form action="delete/{{ sugg_id }}/" method="POST">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" class="button" value="Add Appointment" />
+            <input type="submit" class="button" value="{{ sugg_id }}" />
         </form>
     </div>
 </div>
