@@ -3,6 +3,9 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import DeleteView
+
 
 from . import models
 from . import forms
@@ -27,10 +30,14 @@ def index(request):
         temp_sugg["id"] = sugg.id
         temp_sugg["author"] = sugg.author.username
         temp_sugg["comments"] = comment_objects
+
+        #new additions for date/time here
+        temp_sugg["date_input"] = sugg.date_input
+        temp_sugg["time_input"] = sugg.time_input
         suggestion_list+=[temp_sugg]
 
     context = {
-        "title":"Suggestions",
+        "title":"Suggestion",
         "suggestions":suggestion_list,
         "form":suggestion_form,
     }
@@ -73,46 +80,11 @@ def logout_view(request):
     logout(request)
     return redirect("/login/")
 
-
-
-
-# NEWER GET_SUGGESTIONS CODE
-# suggestion_objects = models.SuggestionModel.objects.all().order_by('-published_on')
-#     suggestion_list = {}
-#     suggestion_list["suggestions"]=[]
-#     for sugg in suggestion_objects:
-#         comment_objects = models.CommentModel.objects.filter(suggestion=sugg).order_by('published_on')
-#         temp_sugg = {}
-#         temp_sugg["suggestion"]=sugg.suggestion
-#         temp_sugg["author"]=sugg.author.username
-#         temp_sugg["id"]=sugg.id
-#         temp_sugg["date"]=sugg.published_on.strftime("%Y-%m-%d %H:%M:%S")
-#         if sugg.image:
-#             temp_sugg["image"]=sugg.image.url
-#             temp_sugg["image_desc"]=sugg.image_description
-#         else:
-#             temp_sugg["image"]=""
-#             temp_sugg["image_desc"]=""
-#         temp_sugg["comments"]=[]
-#         for comm in comment_objects:
-#             temp_comm={}
-#             temp_comm["comment"]=comm.comment
-#             temp_comm["id"]=comm.id
-#             temp_comm["author"]=comm.author.username
-#             time_diff = datetime.now(timezone.utc) - comm.published_on
-#             time_diff_s = time_diff.total_seconds()
-#             if time_diff_s < 60:
-#                 temp_comm["date"] = "published " + str(int(time_diff_s)) + " seconds ago"
-#             else:
-#                 time_diff_m = divmod(time_diff_s, 60)[0]
-#                 if time_diff_m < 60:
-#                     temp_comm["date"] = "published " + str(int(time_diff_m)) + " minutes ago"
-#                 else:
-#                     time_diff_h = divmod(time_diff_m, 60)[0]
-#                     if time_diff_h < 24:
-#                         temp_comm["date"] = "published " + str(int(time_diff_h)) + " hour ago"
-#                     else:
-#                         temp_comm["date"]  = "published on " + comm.published_on.strftime("%Y-%m-%d")
-#             temp_sugg["comments"]+=[temp_comm]
-#         suggestion_list["suggestions"]+=[temp_sugg]
-#     return JsonResponse(suggestion_list)
+def delete(request, id):
+    obj = get_object_or_404(SuggestionModel, id=sugg.id)
+    if request.method == "POST":
+        obj.delete()
+    context = {
+        "object":obj
+    }
+    return render(request, "delete.html", context)

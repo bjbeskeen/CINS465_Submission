@@ -4,6 +4,21 @@
 
 {% block content %}
 
+<!-- <script src="{% url 'js-catalog' %}"></script>
+<script src="{% static '/admin/js/corejs' %}"></script> -->
+
+{% if request.user.is_authenticated %}
+<div class="grid-x grid-padding-x">
+    <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
+        <form action="/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="button" value="Add Appointment" />
+        </form>
+    </div>
+</div>
+{% endif %}
+
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell">
@@ -13,7 +28,14 @@
                         {% verbatim %}
                             <h3 class="lead">{{ sugg.suggestion }}</h3>
                             authored by {{ sugg.author }}
+                            <br>
+                            {{ sugg.date_input }} @ {{ sugg.time_input }}
                         {% endverbatim %}
+                        <br>
+                        <form action="/delete/" method="POST">
+                            {% csrf_token %}
+                            <button type='submit' class = "button" value="{{ sugg.id }}">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -22,14 +44,6 @@
 </div>
 
 {{ comments }}
-
-{% if request.user.is_authenticated %}
-<form action="/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" class="button" value="Add Appointment" />
-</form>
-{% endif %}
 
 {% endblock %}
 
