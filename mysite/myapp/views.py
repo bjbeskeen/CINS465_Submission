@@ -80,11 +80,11 @@ def logout_view(request):
     logout(request)
     return redirect("/login/")
 
-def delete(request, id):
-    obj = get_object_or_404(SuggestionModel, id=sugg.id)
+def delete(request, sugg_id):
+    obj = get_object_or_404(SuggestionModel, sugg_id=sugg.id)
     if request.method == "POST":
         obj.delete()
     context = {
-        "object":obj
+        "appointment":obj
     }
     return render(request, "delete.html", context)
