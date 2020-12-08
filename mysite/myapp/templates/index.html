@@ -32,10 +32,7 @@
                             {{ sugg.date_input }} @ {{ sugg.time_input }}
                         {% endverbatim %}
                         <br>
-                        <form action="/delete/" method="POST">
-                            {% csrf_token %}
-                            <button type='submit' class = "button" value="{{ sugg.id }}">Delete</button>
-                        </form>
+                        <a href="/delete/{{ sugg_id }}">Delete Appointment</a>
                     </div>
                 </div>
             </div>

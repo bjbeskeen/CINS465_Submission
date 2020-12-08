@@ -80,10 +80,3 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
-
-# class MyDeleteView(DeleteView):
-#     def get_object(self, queryset=None):
-#         obj = super(MyDeleteView, self).get_object()
-#         if not obj.owner == self.request.user:
-#             raise Http404
-#         return obj

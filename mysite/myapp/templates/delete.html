@@ -1,4 +1,9 @@
-<form action="/delete/" method="POST">
+{% extends "base.html" %}
+
+{% block content %}
+<form action="delete/{{ sugg_id }}" method="POST">
     {% csrf_token %}
-    <button type='submit' class = "button" value="{{ sugg.id }}">Delete</button>
+    {{ form }}
+    <input type="submit" class="button expanded" value="Delete" />
 </form>
+{% endblock %}
