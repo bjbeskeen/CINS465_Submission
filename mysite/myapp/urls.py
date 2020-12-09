@@ -11,5 +11,5 @@ urlpatterns = [
     path('register/', views.register),
     path('logout/', views.logout_view), 
     path('jsi18n/', JavaScriptCatalog.as_view(), name='js-catalog'),
-    path('delete/<int:sugg_id>/', views.delete, name='delete'),
+    path('delete/<int:id>/', views.delete, name='delete'),
 ]

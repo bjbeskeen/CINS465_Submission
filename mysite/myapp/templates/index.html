@@ -4,9 +4,6 @@
 
 {% block content %}
 
-<!-- <script src="{% url 'js-catalog' %}"></script>
-<script src="{% static '/admin/js/corejs' %}"></script> -->
-
 {% if request.user.is_authenticated %}
 <div class="grid-x grid-padding-x">
     <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
@@ -21,18 +18,18 @@
 
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
-        <div class="large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell">
+        <div class="large-8 medium-8 small-10 large-offset-2 medium-offset-2 cell">
             <div id="auto_refresh">
                 <div class="card-info primary" v-for="sugg in suggestions">
                     <div class="card-info-content">
                         {% verbatim %}
                             <h3 class="lead">{{ sugg.suggestion }}</h3>
-                            authored by {{ sugg.author }}
-                            <br>
                             {{ sugg.date_input }} @ {{ sugg.time_input }}
+                            <div class="columns large-8 large-offset-9">
+                                <a :href="'/delete/'+ sugg.id +'/'" class="button">Delete Appointment</a>
+                            </div>  
+                            authored by {{ sugg.author }}
                             {% endverbatim %}
-                        <br>
-                        <a href="/delete/{{ sugg_id }}/" class="button">Delete Appointment</a>
                     </div>
                 </div>
             </div>
@@ -49,3 +46,5 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{% static "js/myvue.js" %}"></script>
 {% endblock %}
+
+<!-- <div class="large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell"> -->

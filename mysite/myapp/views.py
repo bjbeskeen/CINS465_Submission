@@ -53,6 +53,8 @@ def get_suggestions(request):
         temp_sugg["suggestion"]=sugg.suggestion
         temp_sugg["author"]=sugg.author.username
         temp_sugg["id"]=sugg.id
+        temp_sugg["date_input"] = sugg.date_input
+        temp_sugg["time_input"] = sugg.time_input
         temp_sugg["comments"]=[]
         for comm in comment_objects:
             temp_comm={}
@@ -80,11 +82,7 @@ def logout_view(request):
     logout(request)
     return redirect("/login/")
 
-def delete(request, sugg_id):
-    app = get_object_or_404(SuggestionModel, sugg_id=sugg_id)
-    if request.method == "POST":
-        obj.delete()
-    context = {
-        "appointment":app
-    }
-    return render(request, "delete.html", context)
+def delete(request, id):
+    app = get_object_or_404(models.SuggestionModel, id=id)
+    app.delete()
+    return redirect("/")
