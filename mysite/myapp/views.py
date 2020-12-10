@@ -56,12 +56,12 @@ def get_suggestions(request):
         temp_sugg["date_input"] = sugg.date_input
         temp_sugg["time_input"] = sugg.time_input
         temp_sugg["comments"]=[]
-        for comm in comment_objects:
-            temp_comm={}
-            temp_comm["comment"]=comm.comment
-            temp_comm["id"]=comm.id
-            temp_comm["author"]=comm.author.username
-            temp_sugg["comments"]+=[temp_comm]
+        # for comm in comment_objects:
+        #     temp_comm={}
+        #     temp_comm["comment"]=comm.comment
+        #     temp_comm["id"]=comm.id
+        #     temp_comm["author"]=comm.author.username
+        #     temp_sugg["comments"]+=[temp_comm]
         suggestion_list["suggestions"]+=[temp_sugg]
     return JsonResponse(suggestion_list)
 
