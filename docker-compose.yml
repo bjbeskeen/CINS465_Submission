@@ -6,12 +6,22 @@ services:
     build: .
     volumes:
        - .:/code
-    ports:
-       - 8000:8000
-      
+    expose:
+       - 8000  
+    user: "1001:1002"
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
     depends_on: 
        - redis
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    depends_on:
+      - web
+    ports:
+      - 80:80
+    links:
+      - web:web
    
   redis:
      image: redis:6.0-rc3-buster
@@ -19,16 +29,3 @@ services:
       - "6379:6379"
 
 
-
-
-
-# services:
-#   web:
-#     build: .
-#     command: python manage.py runserver 0.0.0.0:8000
-#     depends_on:
-#       - redis
-#   redis:
-#     image: redis:6.0-rc3-buster
-#     ports:
-#     - "6379:6379"
