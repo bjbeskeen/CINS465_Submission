@@ -44,8 +44,11 @@ DATE_INPUT_FORMATS = [
     '%d %B %Y', '%d %B, %Y',            # '25 October 2006', '25 October, 2006'
 ]
 
-# Application definition
 
+# Channels
+ASGI_APPLICATION = 'mysite.asgi.application'
+
+# Application definition
 INSTALLED_APPS = [
     'channels',
     'chat',
@@ -137,8 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 
-# Channels
-ASGI_APPLICATION = 'mysite.asgi.application'
+
 
 CHANNEL_LAYERS = {
     'default': {
