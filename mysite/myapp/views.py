@@ -11,7 +11,7 @@ from . import models
 from . import forms
 
 # Create your views here.
-@login_required
+# @login_required
 def index(request):
     if request.method =="POST":
         suggestion_form = forms.SuggestionForm(request.POST)
@@ -28,7 +28,7 @@ def index(request):
         temp_sugg = {}
         temp_sugg["suggestion"] = sugg.suggestion
         temp_sugg["id"] = sugg.id
-        temp_sugg["author"] = sugg.author.username
+        # temp_sugg["author"] = sugg.author.username
         temp_sugg["comments"] = comment_objects
 
         #new additions for date/time here
@@ -51,17 +51,11 @@ def get_suggestions(request):
         comment_objects = models.CommentModel.objects.filter(suggestion=sugg)
         temp_sugg = {}
         temp_sugg["suggestion"]=sugg.suggestion
-        temp_sugg["author"]=sugg.author.username
+        # temp_sugg["author"]=sugg.author.username
         temp_sugg["id"]=sugg.id
         temp_sugg["date_input"] = sugg.date_input
         temp_sugg["time_input"] = sugg.time_input
         temp_sugg["comments"]=[]
-        # for comm in comment_objects:
-        #     temp_comm={}
-        #     temp_comm["comment"]=comm.comment
-        #     temp_comm["id"]=comm.id
-        #     temp_comm["author"]=comm.author.username
-        #     temp_sugg["comments"]+=[temp_comm]
         suggestion_list["suggestions"]+=[temp_sugg]
     return JsonResponse(suggestion_list)
 
@@ -70,7 +64,7 @@ def register(request):
         form_instance = forms.RegistrationForm(request.POST)
         if form_instance.is_valid():
             form_instance.save()
-            return redirect("/login/")
+            return redirect("/login/") 
     else:
         form_instance = forms.RegistrationForm()
         context = {

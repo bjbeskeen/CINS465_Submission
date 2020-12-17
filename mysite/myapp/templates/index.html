@@ -4,7 +4,6 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
 <div class="grid-x grid-padding-x">
     <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
         <form action="/" method="post">
@@ -14,7 +13,7 @@
         </form>
     </div>
 </div>
-{% endif %}
+
 
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
@@ -28,7 +27,7 @@
                             <div class="columns large-8 large-offset-9">
                                 <a :href="'/delete/'+ sugg.id +'/'" class="button">Delete Appointment</a>
                             </div>  
-                            authored by {{ sugg.author }}
+                            <!-- authored by {{ sugg.author }} -->
                             {% endverbatim %}
                     </div>
                 </div>
@@ -46,3 +45,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{% static "js/myvue.js" %}"></script>
 {% endblock %}
+
+
+<!-- {% if request.user.is_authenticated %} -->
+<!-- {% endif %} -->

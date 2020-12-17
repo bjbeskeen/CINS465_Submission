@@ -25,7 +25,7 @@ SECRET_KEY = 'a$d4=cvmz===$t1#l7i1ho-mx5b0%4ze^-)v=o1$mklx=v@ir8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["35.208.202.192"]
 
 LOGIN_REDIRECT_URL="/"
 LOGIN_URL="/login/"
@@ -89,8 +89,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -139,7 +137,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 
-# mysite/settings.py
 # Channels
 ASGI_APPLICATION = 'mysite.asgi.application'
 

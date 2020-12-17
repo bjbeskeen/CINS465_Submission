@@ -37,7 +37,7 @@ class SuggestionForm(forms.Form):
     def save(self, request):
         suggestion_instance = models.SuggestionModel()
         suggestion_instance.suggestion = self.cleaned_data["suggestion"]
-        suggestion_instance.author = request.user
+        # suggestion_instance.author = request.user
         suggestion_instance.date_input = self.cleaned_data["date_input"]
         suggestion_instance.time_input = self.cleaned_data["time_input"]
         suggestion_instance.save()

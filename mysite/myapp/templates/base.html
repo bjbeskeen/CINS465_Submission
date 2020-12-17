@@ -15,29 +15,24 @@
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="dropdown menu"><b>Appointment Manager</b></li>
-          <li>
+          <!-- <li>
               {% if user.is_authenticated %}
                 <a href="/logout/">Logout</a>
               {% else %}
                 <a href="/login/">Login</a>
               {% endif %}
-          </li>
-          <!-- 
-          <li>
-            <a href="#">One</a>
-            ###this is how to add other pages to my site through top bar links
-          </li>
-          -->
+          </li>  -->
         </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
           <li>
-              {% if user.is_authenticated %}
+            <a href="/chat/">Chat</a>
+              <!-- {% if user.is_authenticated %}
                   Welcome {{ user.username }}
               {% else %}
                   Welcome Guest
-              {% endif %}
+              {% endif %} -->
           </li>
         </ul>
       </div>

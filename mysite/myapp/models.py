@@ -8,7 +8,7 @@ from django.forms import TextInput, Textarea
 # Create your models here.
 class SuggestionModel(models.Model):
     suggestion = models.CharField(max_length=240)
-    author = models.ForeignKey(User, on_delete=models.CASCADE) #new
+    # author = models.ForeignKey(User, on_delete=models.CASCADE) #new
     date_input = models.DateField(null=True)
     time_input = models.TimeField(null=True)
 
